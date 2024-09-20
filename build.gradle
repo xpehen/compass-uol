@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'desafio.com'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws-messaging:2.2.6.RELEASE'
+	implementation 'com.amazonaws:aws-java-sdk-sqs:1.12.571'
+	implementation 'com.h2database:h2:2.1.214'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-core:5.0.0'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.0.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+}
+
+bootJar {
+	mainClass.set('br.com.desafio.SanGiorgioApplication')
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

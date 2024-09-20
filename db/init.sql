@@ -1,0 +1,26 @@
+CREATE TABLE IF NOT EXISTS seller
+(
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
+    name VARCHAR(80)
+);
+
+CREATE TABLE IF NOT EXISTS sale
+(
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
+    saleValue DECIMAL(20,2)
+);
+
+CREATE TABLE IF NOT EXISTS payment
+(
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
+    sale_id UUID NOT NULL,
+    paymentValue DECIMAL(20, 2) NOT NULL,
+    paymentStatus VARCHAR(7) NOT NULL,
+    CONSTRAINT fk_sale FOREIGN KEY (sale_id) REFERENCES sale(id)
+);
+
+INSERT INTO seller(id, name)
+VALUES ('9ee69378-3fd9-400d-9a8e-70a617ce7324', 'Marco Aurelio Pereira');
+
+INSERT INTO sale(id, saleValue)
+VALUES ('ee0870a8-4110-4233-af3f-752f5b9487fd', 130.50);
